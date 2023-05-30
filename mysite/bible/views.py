@@ -1,12 +1,15 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Verse, Book, Testament
+from django.apps import apps
 from django.db.models import Max
 # Create your views here.
 
 
 def root(request, pg):
     context = {}
-    verses = Verse.objects.filter(chapter=pg).order_by('verse').all()
+    model = apps.get_model('bible', 'Verse')
+    print(model)
+    verses = model.objects.filter(chapter=pg).order_by('verse').all()
     book_name = verses[0].book.name
     if not len(verses):
         return redirect(to=f'/bible/{pg-1}')
