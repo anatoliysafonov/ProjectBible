@@ -1,7 +1,8 @@
 from django.urls import path, include
 from . import views
 
+app_name = 'bible'
 
 urlpatterns = [
-    path('', views.root, name='root'),
+    path('<int:pg>', views.root, name='root'),
 ]

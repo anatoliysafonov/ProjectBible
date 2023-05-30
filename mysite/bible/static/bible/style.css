@@ -1,0 +1,13 @@
+body, html {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+a {
+    text-decoration: none;
+}
+.book-name {
+    font-family: "Times New Roman", serif;
+    font-size: 60px;
+    color: brown;
+}
