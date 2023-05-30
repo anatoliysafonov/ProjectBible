@@ -1,0 +1,17 @@
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И в те дни появляется 1аИоанн Креститель, и проповедует в бИудейской 2пустыне,',2,1,3,1);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И говорит: 1аКайтесь, ибо 2приблизилось 3бцарство небес.',2,1,3,2);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Ибо это тот, о ком было сказано через пророка Исайю, который говорит: «аГолос восклицающего в 1пустыне: „бПриготовьте путь Господа; 2делайте прямыми Его тропы“».',2,1,3,3);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('А одежда у этого Иоанна была из 1аверблюжьего волоса, и бкожаный пояс на бёдрах, а его пищей были всаранча и дикий мёд.',2,1,3,4);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Тогда выходил к нему аИерусалим, и вся Иудея, и вся окрестность бИордана,',2,1,3,5);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И 1акрестились у него в реке 2бИордане, висповедуя свои грехи.',2,1,3,6);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Но, увидев, что многие 1афарисеи и 2бсаддукеи идут к нему на вкрещение, он сказал им: Отродье ггадюк! Кто подсказал вам бежать от будущего дгнева?',2,1,3,7);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Принесите же плод, адостойный вашего покаяния.',2,1,3,8);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И не вздумайте говорить внутри себя: «Отец у нас аАвраам», ибо говорю вам, что Бог может из этих бкамней 1воздвигнуть вдетей Аврааму.',2,1,3,9);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И уже топор у корня деревьев лежит. Итак, всякое адерево, не приносящее хорошего плода, срубают и бросают в богонь.',2,1,3,10);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Я крещу вас в аводе к бпокаянию, но вТот, кто идёт за мной, сильнее меня; я недостоин понести Его гсандалии. Он Сам будет крестить вас в Святом дДухе и 1еогне,',2,1,3,11);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И у Него в руке алопата для веяния. И Он расчистит Своё гумно и бсоберёт Свою 1пшеницу в амбар, а мякину сожжёт неугасимым вогнём.',2,1,3,12);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Тогда приходит Иисус из аГалилеи на Иордан к Иоанну, чтобы 1бкреститься у него.',2,1,3,13);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Но Иоанн удерживал Его и говорил: Это мне нужно креститься у Тебя, а Ты приходишь ко мне?',2,1,3,14);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('Но Иисус сказал ему в ответ: Позволь сейчас, ибо так подобает нам аисполнить всю 1праведность. — Тогда он позволяет Ему.',2,1,3,15);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И, 1крестившись, Иисус сразу же вышел из воды. И вот, аоткрылись Ему 2небеса, и Он увидел, как 3Дух Божий сходит, словно 4бголубь, и опускается вна Него.',2,1,3,16);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values (' И вот, аголос с небес говорит: 1Это Мой бСын, Возлюбленный, в котором Я нашёл вотраду.',2,1,3,17);
