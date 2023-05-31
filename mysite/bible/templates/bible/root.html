@@ -1,5 +1,6 @@
 {% extends "bible/base.html" %}
 {% block content %}
+{% autoescape off %}
 {% for verse in verses %}
 <div class="container-sm m-2">
     <div class="d-flex" >
@@ -8,4 +9,5 @@
     </div>
 </div>
 {% endfor %}
+{% endautoescape %}
 {% endblock %}
