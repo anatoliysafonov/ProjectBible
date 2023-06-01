@@ -4,13 +4,12 @@ from django.core.cache import cache
 from django.apps import apps
 from copy import copy
 import pickle
-from datetime import datetime
 # Create your views here.
 
 
 def make_text_linked(verses: list):
     import re
-    LINK_HREF = "<a href='/bible/primitku/#{}'><sup><b>{}</b></sup></a>"
+    LINK_HREF = "<a class='text-sup' href='/bible/primitku/#{}'><sup><b>{}</b></sup></a>"
     linked_verses = copy(verses)
     testament = linked_verses[0].testament.id
     book = linked_verses[0].book.id
@@ -23,7 +22,7 @@ def make_text_linked(verses: list):
     return linked_verses
 
 
-def root(request, book: int, chapter: int):
+def index(request, book: int, chapter: int):
     cached_book = cache.get('book_text')
     if cached_book:
         book_query = pickle.loads(cached_book)
@@ -41,6 +40,20 @@ def root(request, book: int, chapter: int):
                'book_name': book_name,
                'book': book,
                }
+    return render(request, 'bible/root.html', context=context)
+
+
+# Create your views here
+def root(request, chapter: int):
+    model = apps.get_model('bible', 'Verse')
+    verses = model.objects.filter(chapter=chapter).order_by('verse').all()
+    book_name = verses[0].book.name
+    next_page = chapter + 1 if chapter < 5 else None
+    prev_page = chapter - 1 if chapter > 1 else None
+    context = {'verses': verses,
+               'next_page': next_page,
+               'prev_page': prev_page,
+               'book_name': book_name}
     return render(request, 'bible/root.html', context=context)
 
 

@@ -3,12 +3,23 @@ body, html {
     justify-content: center;
     padding-top: 10px;
     padding-bottom: 30px;
+    font-size:
 }
 a {
     text-decoration: none;
 }
+.verse-num {
+    font-size: 20px;
+}
+.text-sup {
+    font-size: 20px;
+}
+.verse {
+    font-family: "Merriweather", serif;
+    font-size: 18px;
+}
 .book-name {
-    font-family: "Times New Roman", serif;
+    font-family: "Merriweather", serif;
     font-size: 60px;
     color: brown;
 }
