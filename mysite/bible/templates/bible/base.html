@@ -15,12 +15,12 @@
     </div>
     <div class="container-sm mb-2 d-flex justify-content-center">
         {% if prev_page %}
-        <a href="/bible/{{prev_page}}">
+        <a href="/bible/{{book}}/{{prev_page}}">
             <button class="btn btn-warning me-4">Попередній розділ</button>
         </a>
         {% endif %}
         {% if next_page %}
-        <a href="/bible/{{next_page}}">
+        <a href="/bible/{{book}}/{{next_page}}">
             <button class="btn btn-warning">Наступний розділ </button>
         </a>
         {% endif %}

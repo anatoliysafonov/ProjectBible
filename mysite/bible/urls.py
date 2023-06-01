@@ -4,5 +4,6 @@ from . import views
 app_name = 'bible'
 
 urlpatterns = [
-    path('<int:pg>', views.root, name='root'),
+    path('<int:book>/<int:chapter>', views.root, name='root'),
+    path('primitku/', views.page404, name='page404')
 ]

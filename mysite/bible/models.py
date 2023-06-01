@@ -23,3 +23,6 @@ class Verse(models.Model):
     verse = IntegerField(null=False, default=1)
     testament = ForeignKey(Testament, on_delete=models.CASCADE)
     book = ForeignKey(Book, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['verse']
