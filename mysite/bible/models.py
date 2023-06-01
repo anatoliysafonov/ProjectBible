@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import ForeignKey, IntegerField, TextField
+from django.db.models import ForeignKey, IntegerField, TextField, CASCADE
 # Create your models here.
 
 
@@ -21,8 +21,8 @@ class Verse(models.Model):
     text = TextField()
     chapter = IntegerField(null=False, default=1)
     verse = IntegerField(null=False, default=1)
-    testament = IntegerField()
-    book = IntegerField()
+    testament = ForeignKey(Testament, on_delete=CASCADE)
+    book = ForeignKey(Book, on_delete=CASCADE)
 
     class Meta:
         ordering = ['verse']
