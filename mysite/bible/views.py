@@ -27,7 +27,7 @@ def index(request, book: int, chapter: int):
     if cached_book:
         book_query = pickle.loads(cached_book)
     else:
-        book_query = Verse.objects
+        book_query = Verse.objects.all()
         cache.set('book_text', pickle.dumps(book_query))
     verses = book_query.filter(book=book).filter(chapter=chapter).all()
     book_name = verses[0].book.name
@@ -44,18 +44,6 @@ def index(request, book: int, chapter: int):
 
 
 # Create your views here
-def root(request, chapter: int):
-    model = apps.get_model('bible', 'Verse')
-    verses = model.objects.filter(chapter=chapter).order_by('verse').all()
-    book_name = verses[0].book.name
-    next_page = chapter + 1 if chapter < 5 else None
-    prev_page = chapter - 1 if chapter > 1 else None
-    context = {'verses': verses,
-               'next_page': next_page,
-               'prev_page': prev_page,
-               'book_name': book_name}
-    return render(request, 'bible/root.html', context=context)
-
 
 def page404(request):
     return render(request, 'bible/404.html',  {})
