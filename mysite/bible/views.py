@@ -1,39 +1,31 @@
-from django.shortcuts import render, redirect
-from .models import Verse
-from django.core.cache import cache
-from django.apps import apps
-from copy import copy
 import pickle
-# Create your views here.
 
+from django.shortcuts import render
+from django.core.cache import cache
 
-def make_text_linked(verses: list):
-    import re
-    LINK_HREF = "<a class='text-sup' href='/bible/primitku/#{}'><sup><b>{}</b></sup></a>"
-    linked_verses = copy(verses)
-    testament = linked_verses[0].testament.id
-    book = linked_verses[0].book.id
-    for verse in linked_verses:
-        tags = re.findall(r'<[а-я\d]*>', verse.text)
-        for tag in tags:
-            tag_shorted = tag[1:-1]
-            href = '-'.join([str(testament), str(book), tag_shorted])
-            verse.text = verse.text.replace(tag, LINK_HREF.format(href, tag_shorted))
-    return linked_verses
+from .models import Verse, Book
+from .sevices import make_text_linked
 
 
 def index(request, book: int, chapter: int):
-    cached_book = cache.get('book_text')
-    if cached_book:
-        book_query = pickle.loads(cached_book)
+    verses_to_page = []
+    verses = cache.get('verses') if (cache.get('book') == book) else None
+    if not verses:
+        verses = Verse.objects.filter(book=book).all()
+        cache.set('verses', pickle.dumps(verses))
+        cache.set('book', book)
     else:
-        book_query = Verse.objects.all()
-        cache.set('book_text', pickle.dumps(book_query))
-    verses = book_query.filter(book=book).filter(chapter=chapter).all()
-    book_name = verses[0].book.name
+        verses = pickle.loads(verses)
+    for verse in verses:
+        if verse.chapter == chapter:
+            verses_to_page.append(verse)
+    book_name = cache.get('book_name')
+    if not book_name:
+        book_name = Book.objects.filter(id=book).get().name # noqa
+        cache.set('book_name', book_name)
     next_page = chapter + 1 if chapter < 5 else None
     prev_page = chapter - 1 if chapter > 1 else None
-    verses = make_text_linked(verses)
+    verses = make_text_linked(verses=verses_to_page)
     context = {'verses': verses,
                'next_page': next_page,
                'prev_page': prev_page,
