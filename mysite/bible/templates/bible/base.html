@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'bible/style.css' %}">
 </head>
 <body>
-<div class="container mb" style="width: 1500px !important; height: 80%">
+<div class="container mb" style="width: 1500px !important;">
     <div class="container d-flex justify-content-center ">
         <p class="book-name">{{book_name}}</p>
     </div>
@@ -27,7 +27,7 @@
         </a>
         {% endif %}
     </div>
-    <div class="container bg-body-secondary rounded p-2">
+    <div class="container bg-body-secondary rounded pb-1 mb-2 shadow-sm">
         {% block content %} {% endblock %}
     </div>
 </div>

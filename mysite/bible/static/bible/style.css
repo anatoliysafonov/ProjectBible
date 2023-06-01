@@ -23,4 +23,8 @@ a {
     font-family: "Merriweather", serif;
     font-size: 60px;
     color: brown;
+    margin: 0px !important;
+}
+p {
+    margin: 0px;
 }
