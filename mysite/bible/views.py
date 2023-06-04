@@ -10,7 +10,7 @@ from .sevices import make_text_linked
 def index(request, book: str, chapter: int):
     # список віршів для виводу на сторінку
     verses_to_page = []
-    # завантажуємо вірші з redis. Якщо помінялась книга, то вірші будуть завантажені з нової книги
+    # Завантажуємо вірші з redis. Якщо помінялась книга, то вірші будуть завантажені з нової книги
     verses = cache.get('verses') if (cache.get('book') == book) else None
     # завантажуємо дані книги з redis.
     book_data = cache.get('book_data')
@@ -20,7 +20,7 @@ def index(request, book: str, chapter: int):
         cache.set('book_data', pickle.dumps(book_data))
     else:
         book_data = pickle.loads(book_data)
-    # якщо кушованих віршів немає, то завантажуємо і кешуємо їх
+    # якщо кешованих віршів немає, то завантажуємо і кешуємо їх
     if not verses:
         verses = Verse.objects.filter(book=book_data.id).all()
         cache.set('verses', pickle.dumps(verses))

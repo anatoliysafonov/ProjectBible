@@ -28,3 +28,6 @@ class Verse(models.Model):
 
     class Meta:
         ordering = ['verse']
+        indexes = [
+            models.Index(fields=['book_id'])
+        ]
