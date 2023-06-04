@@ -1,1 +1,7 @@
-.idea
+.idea/
+mysite/bible/__pycache__/
+mysite/bible/migrations/
+mysite/__pycache__/
+
+
+
