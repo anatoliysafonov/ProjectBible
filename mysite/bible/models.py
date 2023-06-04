@@ -14,6 +14,11 @@ class Book(models.Model):
     chapter_count = IntegerField(null=True)
     chapter_ready = IntegerField(null=True)
 
+    class Meta:
+        indexes = [
+            models.Index(fields=['bible_name'])
+        ]
+
 
 class Testament(models.Model):
     name = TextField(max_length=14)
@@ -28,6 +33,4 @@ class Verse(models.Model):
 
     class Meta:
         ordering = ['verse']
-        indexes = [
-            models.Index(fields=['book_id'])
-        ]
+        
