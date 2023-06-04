@@ -3,7 +3,7 @@ from copy import copy
 
 def make_text_linked(verses: list):
     import re
-    LINK_HREF = "<a class='text-sup' href='/bible/primitku/#{}'><sup><b>{}</b></sup></a>"
+    LINK_HREF = "<a class='text-sup' href='/footnote/{}'><sup><b>{}</b></sup></a>"
     linked_verses = copy(verses)
     testament = str(linked_verses[0].testament_id)
     book = str(linked_verses[0].book_id)
