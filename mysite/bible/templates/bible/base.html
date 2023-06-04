@@ -11,23 +11,23 @@
 </head>
 <body>
 <div class="container mb" style="width: 1500px !important;">
-    <div class="container d-flex justify-content-center ">
-        <p class="book-name">{{book_name}}</p>
+    <div class="container-sm w-50 d-flex justify-content-center bg-success align-middle">
+        {{book_name}}
     </div>
 
-    <div class="container-sm mb-2 d-flex justify-content-center">
+    <div class="bg-info d-flex justify-content-center">
         {% if prev_page %}
         <a href="/bible/{{book}}/{{prev_page}}">
-            <button class="btn btn-warning me-4">Попередній розділ</button>
+            <button class="mx-1">Попередній розділ</button>
         </a>
         {% endif %}
         {% if next_page %}
         <a href="/bible/{{book}}/{{next_page}}">
-            <button class="btn btn-warning">Наступний розділ </button>
+            <button class="mx-1">Наступний розділ </button>
         </a>
         {% endif %}
     </div>
-    <div class="container bg-body-secondary rounded pb-1 mb-2 shadow-sm">
+    <div class="outer">
         {% block content %} {% endblock %}
     </div>
 </div>
