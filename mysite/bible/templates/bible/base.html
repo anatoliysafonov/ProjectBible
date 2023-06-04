@@ -15,17 +15,13 @@
         {{book_name}}
     </div>
 
-    <div class="bg-info d-flex justify-content-center">
-        {% if prev_page %}
+    <div class="bg-info d-flex justify-content-center p-1">
         <a href="/bible/{{book}}/{{prev_page}}">
-            <button class="mx-1">Попередній розділ</button>
+            <button class="mx-1" {% if not prev_page %} disabled {% endif %}>Попередній розділ</button>
         </a>
-        {% endif %}
-        {% if next_page %}
         <a href="/bible/{{book}}/{{next_page}}">
-            <button class="mx-1">Наступний розділ </button>
+            <button class="mx-1" {% if not next_page %} disabled {% endif %}>Наступний розділ</button>
         </a>
-        {% endif %}
     </div>
     <div class="outer">
         {% block content %} {% endblock %}
