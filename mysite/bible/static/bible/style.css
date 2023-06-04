@@ -1,30 +1,19 @@
 body, html{
     display: flex;
     justify-content: center;
-    padding: 0 0 30px 0;
-    font-size:
-    width: 100%;
+    font-size:20px;
     height: 100%;
+    width: 100%;
+    background-color: gray;
 }
-a {
+div a {
+    color: rgb(0, 76, 153);
     text-decoration: none;
 }
-.verse-num {
-    font-size: 20px;
-}
-.text-sup {
-    font-size: 20px;
-}
-.verse {
-    font-family: "Merriweather", serif;
-    font-size: 18px;
-}
-.book-name {
-    font-family: "Merriweather", serif;
-    font-size: 60px;
-    color: brown;
-    margin: 0px !important;
-}
-p {
-    margin: 0px;
+
+.outer {
+    width: 100%;
+    height: calc(100vh - 100px);
+    background-color: aquamarine;
+    overflow-y: auto;
 }
