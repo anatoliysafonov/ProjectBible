@@ -32,5 +32,5 @@ class Verse(models.Model):
     book = ForeignKey(Book, on_delete=CASCADE)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['verse']
         
