@@ -1,13 +1,13 @@
 import pickle
-
 from django.shortcuts import render
 from django.core.cache import cache
-
+from django.http import JsonResponse
 from .models import Verse, Book
 from .sevices import make_text_linked
 
 
-def index(request, book: str, chapter: int):
+def index(request, book: str='matt', chapter: int=1):
+    print('USER:', request.user)
     # список віршів для виводу на сторінку
     verses_to_page = []
     # Завантажуємо вірші з redis. Якщо помінялась книга, то вірші будуть завантажені з нової книги
@@ -49,3 +49,8 @@ def index(request, book: str, chapter: int):
 
 def page404(request):
     return render(request, 'bible/404.html',  {})
+
+
+def ajax(request):
+    print(request.GET.get('data'))
+    return JsonResponse({'foor': 'bar'})

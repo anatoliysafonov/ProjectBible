@@ -2,10 +2,26 @@
 {% block content %}
 {% autoescape off %}
 {% for verse in verses %}
-    <div class="d-flex" >
-          <div >{{verse.chapter}}:{{verse.verse}}</div>
-          <div>{{verse.text}}</div>
+<div class="accordion accordion-flush" id="accordionFlushExample{{verse.verse}}">
+    <div class="accordion-item myheader">
+        <p class="accordion-header">
+            <button class="accordion-button collapsed myheader"  data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne{{verse.verse}}" aria-expanded="false" aria-controls="flush-collapseOne{{verse.verse}}">
+                {{verse.text}}
+            </button>
+        </p>
+        <div id="flush-collapseOne{{verse.verse}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample{{verse.verse}}">
+            <div class="accordion-body">
+                <form>
+                    <textarea style="width:100%" rows="3" placeholder="ваш коментар"></textarea>
+                    <button type="button" class="button_save">SAVE</button>
+                    <button type="reset" class="button_reset">RESET</button>
+                </form>
+
+            </div>
+        </div>
     </div>
+</div>
 {% endfor %}
 {% endautoescape %}
 {% endblock %}
