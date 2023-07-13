@@ -1,4 +1,4 @@
-insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('А после того как Иисус ародился в 1бВифлееме Иудейском в дни царя вИрода, вот, прибыли в Иерусалим гволхвы с двостока',2,1,2,1);
+insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('А после того как Иисус <а>родился в <1б>Вифлееме Иудейском в дни царя <в>Ирода, вот, прибыли в Иерусалим <г>волхвы с двостока',2,1,2,1);
 insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И сказали: Где Тот, кто родился 1аЦарём Иудейским? Ибо мы увидели Его 2бзвезду при её восхождении и пришли впоклониться Ему.',2,1,2,2);
 insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И, услышав это, царь Ирод встревожился, и весь Иерусалим с ним.',2,1,2,3);
 insert into bible_verse (text, testament_id, book_id, chapter, verse) values ('И, собрав всех главных 1асвященников и бкнижников народа, он спросил у них, где родится Христос.',2,1,2,4);

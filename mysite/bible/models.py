@@ -19,6 +19,8 @@ class Book(models.Model):
             models.Index(fields=['bible_name'])
         ]
 
+class Note(models.Model):
+    text = models.TextField()
 
 class Testament(models.Model):
     name = TextField(max_length=14)
@@ -30,6 +32,7 @@ class Verse(models.Model):
     verse = IntegerField(null=False, default=1)
     testament = ForeignKey(Testament, on_delete=CASCADE)
     book = ForeignKey(Book, on_delete=CASCADE)
+    note = ForeignKey(Note, on_delete=CASCADE, null=True)
 
     class Meta:
         ordering = ['verse']
