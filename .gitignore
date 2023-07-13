@@ -2,3 +2,10 @@
 mysite/bible/__pycache__/
 mysite/bible/migrations/__pycache__
 mysite/__pycache__/
+mysite/bible/__pycache__/__init__.cpython-310.pyc
+mysite/bible/__pycache__/admin.cpython-310.pyc
+mysite/bible/__pycache__/apps.cpython-310.pyc
+mysite/bible/__pycache__/models.cpython-310.pyc
+mysite/bible/__pycache__/sevices.cpython-310.pyc
+mysite/bible/__pycache__/urls.cpython-310.pyc
+mysite/bible/__pycache__/views.cpython-310.pyc
