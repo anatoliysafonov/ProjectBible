@@ -42,7 +42,7 @@ def index(request, book: str='matt', chapter: int=1):
                'book_name': book_data.name,
                'book': book,
                }
-    return render(request, 'bible/root.html', context=context)
+    return render(request, 'bible/verses.html', context=context)
 
 
 # Create your views here
