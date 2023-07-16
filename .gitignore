@@ -2,3 +2,4 @@
 mysite/bible/__pycache__/
 mysite/bible/migrations/__pycache__
 mysite/__pycache__/
+*.pyc
