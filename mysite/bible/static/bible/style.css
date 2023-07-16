@@ -83,7 +83,7 @@ body{
 }
 .modal_content textarea {
     box-sizing: border-box;
-    width: 700px;
+    width: 650px;
     resize: both;
     outline: none !important;
     border: none;

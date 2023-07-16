@@ -2,7 +2,7 @@
 {% block content %}
 {% autoescape off %}
 {% for verse in verses %}
-<div class="row" onclick="openModal(this)">
+<div class="row" onclick="openModal(this, uuid={{verse.id}})">
     <div class="row_verse_number click_no_propagation">
         <span>{{verse.chapter}}:{{verse.verse}}</span>
     </div>

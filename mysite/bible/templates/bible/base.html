@@ -31,9 +31,10 @@
     <dialog class="modal" id="modal">
         <div class="modal_content">
          <form style="width: 100%; display: flex; flex-direction: column;">
+            {% csrf_token %}
             <textarea rows="25" name="note_text" id="note_text"></textarea>
             <div style="width: 100%; display: flex; flex-direction: row;">
-                <input type="submit" value="Submit">
+                <input type="button" uuid=0 value="Submit" id="submit" onclick="customSubmit(this)">
                 <input type="reset" value = "Reset">
                 <input type="button" onclick="hideModal()" value="Close">
             </div>
@@ -52,17 +53,45 @@ $(document).ready(() => {
 })
 
 
-function openModal(obj){
-    var modal = document.querySelector("#modal");
-    var verseText = obj.childNodes[3].childNodes[1].innerHTML;
-    document.querySelector("#note_text").value = verseText;
-    modal.showModal();
+function openModal(obj, uuid){
+    var csrf = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    var submit_btn = document.querySelector("#submit");
+    submit_btn.setAttribute('uuid', uuid)
+    $.ajax({
+        type: 'post',
+        url: "{% url 'bible:ajaxreadnote' %}",
+        data: {csrfmiddlewaretoken: csrf, 'uuid': uuid},
+        cache:true,
+        success: function(response) {
+            var textarea = document.getElementById("note_text");
+            textarea.value = response.result;
+            submit_btn.code = response.uuid;
+            var modal = document.querySelector("#modal");
+            modal.showModal();
+            textarea.scrollTop = 0;
+        }
+    })
 }
 
-
 function hideModal(){
+    document.querySelector("#note_text").value = '';
     document.querySelector("#modal").close();
-}    
+}
+
+function customSubmit(){
+    var text = document.querySelector("#note_text");
+    var btn = document.querySelector("#submit");
+    var csrf = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    $.ajax({
+        type:'post',
+        url: "{% url 'bible:ajaxwritenote' %}",
+        data: {'text': text.value, 'uuid':btn.getAttribute('uuid'), csrfmiddlewaretoken: csrf},
+        success:function(response){
+            console.log(response.text);
+        }
+    });
+    hideModal();
+}
 </script>
 </body>
 

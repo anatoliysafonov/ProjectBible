@@ -2,12 +2,13 @@ import pickle
 from django.shortcuts import render
 from django.core.cache import cache
 from django.http import JsonResponse
-from .models import Verse, Book, Note
+from .models import Verse, Book, Note 
 from .sevices import make_text_linked
 
 
 def index(request, book: str='matt', chapter: int=1):
-    print('USER:', request.user)
+    user = request.user.id if request.user.id else 0
+    print('USER:', user)
     # список віршів для виводу на сторінку
     verses_to_page = []
     # Завантажуємо вірші з redis. Якщо помінялась книга, то вірші будуть завантажені з нової книги
@@ -51,11 +52,28 @@ def page404(request):
     return render(request, 'bible/404.html',  {})
 
 
-def ajax(request):
-    code =request.POST.get('verse_id')
-    text = request.POST.get('notetext')
-    note = Note()
-    note.code = code
-    note.text = text
-    note.save()
-    return JsonResponse({'result': 'success'}, status=200)
+def ajaxreadnote(request):
+    answer = 'поки без коментара'
+    uuid = 0
+    if request.method == "POST":
+        data = request.POST.get('uuid')
+        note_text = Note.objects.filter(code=str(data))
+        if note_text:
+            answer = note_text[0].text
+    return JsonResponse({'result': answer, 'uuid': data}, status=200)
+
+def ajaxwritenote(request):
+    if request.method == "POST":
+        text = request.POST.get('text')
+        uuid = request.POST.get('uuid')
+        note = Note.objects.filter(code=uuid).first()
+        if not note:
+            note = Note(code=uuid, text=text)
+
+        else:
+            print('uifh3uiowfhui3rhf')
+            note.text = text
+        note.save()
+        
+        
+    return JsonResponse({'result': text}, status=200)
