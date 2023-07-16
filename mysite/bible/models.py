@@ -33,4 +33,12 @@ class Verse(models.Model):
 
     class Meta:
         ordering = ['verse']
-        
+
+class Note(models.Model):
+    code = models.CharField(max_length=8, null=True)
+    text = models.TextField()
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['code'])
+        ]

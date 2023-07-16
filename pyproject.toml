@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "bible"
+name = "projectbible"
 version = "0.1.0"
 description = ""
 authors = ["Анатолій <anatoliy.safonov.ua@gmail.com>"]
@@ -7,10 +7,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-django = "^4.2.1"
-psycopg2-binary = "^2.9.6"
-pillow = "^9.5.0"
-django-redis = "^5.2.0"
+django = "^4.2.2"
+redis = "^4.5.5"
 
 
 [build-system]

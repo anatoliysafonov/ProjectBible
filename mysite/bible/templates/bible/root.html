@@ -2,24 +2,15 @@
 {% block content %}
 {% autoescape off %}
 {% for verse in verses %}
-<div class="accordion accordion-flush" id="accordionFlushExample{{verse.verse}}">
-    <div class="accordion-item myheader">
-        <p class="accordion-header">
-            <button class="accordion-button collapsed myheader"  data-bs-toggle="collapse"
-                    data-bs-target="#flush-collapseOne{{verse.verse}}" aria-expanded="false" aria-controls="flush-collapseOne{{verse.verse}}">
-                {{verse.text}}
-            </button>
-        </p>
-        <div id="flush-collapseOne{{verse.verse}}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample{{verse.verse}}">
-            <div class="accordion-body">
-                <form>
-                    <textarea style="width:100%" rows="3" placeholder="ваш коментар"></textarea>
-                    <button type="button" class="button_save">SAVE</button>
-                    <button type="reset" class="button_reset">RESET</button>
-                </form>
-
-            </div>
-        </div>
+<div class="row" onclick="openModal(this)">
+    <div class="row_verse_number click_no_propagation">
+        <span>{{verse.chapter}}:{{verse.verse}}</span>
+    </div>
+    <div class="row_verse_text click_no_propagation">
+        <span>{{verse.text}}</span>
+    </div>
+    <div class="row_note_icon">
+        <i class="material-icons">edit_note</i>
     </div>
 </div>
 {% endfor %}

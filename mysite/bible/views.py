@@ -2,7 +2,7 @@ import pickle
 from django.shortcuts import render
 from django.core.cache import cache
 from django.http import JsonResponse
-from .models import Verse, Book
+from .models import Verse, Book, Note
 from .sevices import make_text_linked
 
 
@@ -52,5 +52,10 @@ def page404(request):
 
 
 def ajax(request):
-    print(request.GET.get('data'))
-    return JsonResponse({'foor': 'bar'})
+    code =request.POST.get('verse_id')
+    text = request.POST.get('notetext')
+    note = Note()
+    note.code = code
+    note.text = text
+    note.save()
+    return JsonResponse({'result': 'success'}, status=200)
