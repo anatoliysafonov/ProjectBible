@@ -21,7 +21,7 @@
 
         <div class="content_buttons">
             <a href="/bible/{{book}}/{{prev_page}}"><button class="content_buttoms_button" {% if not prev_page %} disabled {% endif %}>Попередній розділ</button></a>
-            <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" style="margin-left: 100px;" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
+            <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" style="margin-left: 10px;" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
         </div>
         <div class="content_verses">
             {% block content %} {% endblock %}
