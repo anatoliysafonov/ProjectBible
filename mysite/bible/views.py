@@ -71,7 +71,6 @@ def ajaxwritenote(request):
             note = Note(code=uuid, text=text)
 
         else:
-            print('uifh3uiowfhui3rhf')
             note.text = text
         note.save()
         

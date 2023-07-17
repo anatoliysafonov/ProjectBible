@@ -3,11 +3,15 @@ body{
     justify-content: center;
     height: 100%;
     width: 100%;
-    background-color: gray;
+    background-color: rgb(221, 222, 223);
+}
+a {
+    text-decoration: none;
+    color: #4b607b;
 }
 .content {
     width: 70%;
-    background-color: #9a9999;
+    background-color: #7c7c7c;
     display: flex;
     flex-direction: column;
     align-items: center;
