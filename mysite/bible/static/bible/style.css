@@ -32,7 +32,6 @@ a {
 }
 .row:hover {
     background-color: antiquewhite;
-    cursor: pointer;
 }
 
 .page-header {
