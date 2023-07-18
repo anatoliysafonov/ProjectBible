@@ -14,35 +14,36 @@
 </head>
 
 <body>
-    <div class="content">
-        <div class="content_header">
-            <span>{{book_name}}</span>
-        </div>
+    <header class="page-header">
+        <span>{{book_name}}</span>
+    </header>
 
-        <div class="content_buttons">
-            <a href="/bible/{{book}}/{{prev_page}}"><button class="content_buttoms_button" {% if not prev_page %} disabled {% endif %}>Попередній розділ</button></a>
-            <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" style="margin-left: 10px;" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
-        </div>
-        <div class="content_verses">
-            {% block content %} {% endblock %}
-        </div>
-    </div>
+    <nav>
+        <a href="/bible/{{book}}/{{prev_page}}"><button class="content_buttoms_button" {% if not prev_page %} disabled {% endif %}>Попередній розділ</button></a>
+        <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" style="margin-left: 10px;" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
+    </nav>
 
-    <dialog class="modal" id="modal">
-        <div class="modal_content">
-         <form style="width: 100%; display: flex; flex-direction: column;">
+    <main class="outer">
+        {% block content %} {% endblock %}
+    </main>
+
+    <dialog id="modal">  
             {% csrf_token %}
-            <textarea rows="25" name="note_text" id="note_text"></textarea>
-            <div style="width: 100%; display: flex; flex-direction: row;">
-                <input type="button" uuid=0 value="Submit" id="submit" onclick="customSubmit(this)">
-                <input type="reset" value = "Reset">
-                <input type="button" onclick="hideModal()" value="Close">
-            </div>
-         </form>
-        </div> 
+            <header class="modal_header">
+                <span id="modal_verse_text" class="modal_verse_text"></span>
+                <i class="material-icons close-button" onclick="hideModal()">close</i>
+            </header>
+            <textarea rows="25" name="note_text" id="note_text" placeholder="без коментара" class="textNote"></textarea>
+            <nav class="dialog_nav">
+                <input class="btn-save" type="button" uuid=0 value="Зберегти зміни" id="submit" onclick="customSubmit(this)">
+                <input type="button" onclick="undoDeleteText(scope='undo')" value="Відмінити зміни">
+                <input class="btn-warning" type="button" onclick="undoDeleteText(scope='delete')" value = "Видалити все">
+            </nav>
     </dialog>
 
 <script>
+var undoVerseText = null;
+
 $(document).ready(() => {
     objs = document.querySelectorAll(".click_no_propagation");
     objs.forEach(obj => {
@@ -54,8 +55,12 @@ $(document).ready(() => {
 
 
 function openModal(obj, uuid){
-    var csrf = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    const csrf = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
     var submit_btn = document.querySelector("#submit");
+    var text = document.querySelector("#modal_verse_text");
+    var verseText = obj.childNodes[3].childNodes[1].innerHTML;
+    verseText = verseText.replace(/<(a|s|b).{1,25}>/g,'');
+    text.innerHTML = verseText;
     submit_btn.setAttribute('uuid', uuid)
     $.ajax({
         type: 'post',
@@ -65,6 +70,7 @@ function openModal(obj, uuid){
         success: function(response) {
             var textarea = document.getElementById("note_text");
             textarea.value = response.result;
+            undoVerseText = response.result;
             submit_btn.code = response.uuid;
             var modal = document.querySelector("#modal");
             modal.showModal();
@@ -74,7 +80,9 @@ function openModal(obj, uuid){
 }
 
 function hideModal(){
-    document.querySelector("#note_text").value = '';
+    textarea = document.querySelector("#note_text");
+    textarea.style.width = '60vw';
+    textarea.style.height = '40vh';
     document.querySelector("#modal").close();
 }
 
@@ -91,6 +99,14 @@ function customSubmit(){
         }
     });
     hideModal();
+}
+function undoDeleteText(scope){
+    var text = document.querySelector("#note_text");
+    if (scope == 'undo'){
+        text.value = undoVerseText;
+    } else {
+        text.value = "";
+    }
 }
 </script>
 </body>

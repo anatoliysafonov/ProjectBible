@@ -1,49 +1,59 @@
+:root {
+    --modal-width: 50vw;
+    --modal-height: 40vh;
+}
 body{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 100%;
-    background-color: rgb(221, 222, 223);
+    background-color: white;
 }
 a {
     text-decoration: none;
     color: #4b607b;
 }
-.content {
-    width: 70%;
-    background-color: #7c7c7c;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.content_header {
-    width: 100%;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-}
-.content_buttoms_button {
-    width: 150px;
-    height: 100%;
-}
-.content_verses {
-    width: 100%;
-}
+
 .outer {
-    width: 1300px;
-    padding: 0px;
-    margin: 0px;
+    width: 70%;
+    background-color: white;
 }
+
 .row {
     width: 100%;
     display: flex;
     flex-direction: row;
-    background-color: gray;
+    margin-bottom: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    border-radius: 5px;
+}
+.row:hover {
+    background-color: antiquewhite;
+    cursor: pointer;
+}
+
+.page-header {
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
     margin-bottom: 5px;
 }
+
+nav button {
+    cursor: pointer;
+}
+
+.content_buttoms_button {
+    width: 150px;
+    height: 100%;
+}
+
 .row_verse_number {
     width: 75px;
-    background-color: bisque;
     display: flex;
     font-weight: 900;
     justify-content: center;
@@ -53,14 +63,12 @@ a {
 .row_verse_text {
     display: flex;
     flex: 1;
-    background-color: #cecdcd;
     align-items: center;
     padding-left: 10px;
     font-size: 20px;
 }
 .row_note_icon {
     width: 75px;
-    background-color: #f3b368;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -75,20 +83,90 @@ a {
     user-select: none;
 }
 
-.modal {
+dialog {
+    border-radius: 5px;
+    border: 1px gray solid;
     box-sizing: border-box;
-    background-color: rgb(218, 188, 87);
-    padding: 0;
+    padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background-color: rgb(253, 245, 236);
 }
-.modal_content {
+
+.dialog_content {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     margin: 0px;
 }
-.modal_content textarea {
+.textNote {
     box-sizing: border-box;
-    width: 650px;
-    resize: both;
+    width: var(--modal-width);
+    height: var(--modal-height);
+    resize: none;
     outline: none !important;
     border: none;
+    font-size: 16px;
+    background-color: #eeefef;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+}
+
+.dialog_nav  {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+    align-items: center;
+}
+.modal_header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+}
+
+.dialog_nav input {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.btn-warning {
+    background-color: rgb(225, 34, 13) !important;
+    color: white;
+    margin-left: 50px;
+}
+
+.btn-save {
+    background-color: rgb(163, 252, 164);
+    color: #4b607b;
+    margin-right: 10px;
+}
+.modal_verse_text {
+    width: var(--modal-width);
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 5px;
+    color: #4b607b;
+    flex: 1;
+}
+.close-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgb(216, 87, 87);
+    font-size: 22px;
+    cursor: pointer;
+    color: rgb(250, 250, 250);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-top: -8px;
+    margin-right: -8px;
 }

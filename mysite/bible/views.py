@@ -53,7 +53,7 @@ def page404(request):
 
 
 def ajaxreadnote(request):
-    answer = 'поки без коментара'
+    answer = ''
     uuid = 0
     if request.method == "POST":
         data = request.POST.get('uuid')
@@ -72,7 +72,5 @@ def ajaxwritenote(request):
 
         else:
             note.text = text
-        note.save()
-        
-        
+        note.save() 
     return JsonResponse({'result': text}, status=200)
