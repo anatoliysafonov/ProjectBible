@@ -79,7 +79,7 @@ CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
         'LOCATION': 'redis://127.0.0.1:6379',
-        "TIMEOUT": 60,
+        "TIMEOUT": 3660,
     }
 }
 DATABASES = {
@@ -89,7 +89,7 @@ DATABASES = {
         "USER": "postgres",
         "PASSWORD": 567234,
         "HOST": '195.201.150.230',
-        "PORT": 5433
+        "PORT": 5433,
     }
 }
 # Password validation

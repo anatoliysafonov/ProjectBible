@@ -33,7 +33,9 @@
                 <span id="modal_verse_text" class="modal_verse_text"></span>
                 <i class="material-icons close-button" onclick="hideModal()">close</i>
             </header>
+            <hr>
             <textarea rows="25" name="note_text" id="note_text" placeholder="без коментара" class="textNote"></textarea>
+            <hr>
             <nav class="dialog_nav">
                 <input class="btn-save" type="button" uuid=0 value="Зберегти зміни" id="submit" onclick="customSubmit(this)">
                 <input type="button" onclick="undoDeleteText(scope='undo')" value="Відмінити зміни">
@@ -59,7 +61,7 @@ function openModal(obj, uuid){
     var submit_btn = document.querySelector("#submit");
     var text = document.querySelector("#modal_verse_text");
     var verseText = obj.childNodes[3].childNodes[1].innerHTML;
-    verseText = verseText.replace(/<(a|s|b).{1,25}>/g,'');
+    // verseText = verseText.replace(/<(a|s|b).{1,25}>/g,'');
     text.innerHTML = verseText;
     submit_btn.setAttribute('uuid', uuid)
     $.ajax({
@@ -74,6 +76,7 @@ function openModal(obj, uuid){
             submit_btn.code = response.uuid;
             var modal = document.querySelector("#modal");
             modal.showModal();
+            textarea.focus();
             textarea.scrollTop = 0;
         }
     })
