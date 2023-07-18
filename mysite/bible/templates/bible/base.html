@@ -33,9 +33,7 @@
                 <span id="modal_verse_text" class="modal_verse_text"></span>
                 <i class="material-icons close-button" onclick="hideModal()">close</i>
             </header>
-            <hr>
             <textarea rows="25" name="note_text" id="note_text" placeholder="без коментара" class="textNote"></textarea>
-            <hr>
             <nav class="dialog_nav">
                 <input class="btn-save" type="button" uuid=0 value="Зберегти зміни" id="submit" onclick="customSubmit(this)">
                 <input type="button" onclick="undoDeleteText(scope='undo')" value="Відмінити зміни">
@@ -76,6 +74,7 @@ function openModal(obj, uuid){
             submit_btn.code = response.uuid;
             var modal = document.querySelector("#modal");
             modal.showModal();
+            modal.style.display = 'flex';
             textarea.focus();
             textarea.scrollTop = 0;
         }
@@ -84,9 +83,10 @@ function openModal(obj, uuid){
 
 function hideModal(){
     textarea = document.querySelector("#note_text");
-    textarea.style.width = '60vw';
-    textarea.style.height = '40vh';
-    document.querySelector("#modal").close();
+    textarea.style.width = '';
+    textarea.style.height = '';
+    resetModal();
+    modal.close();
 }
 
 function customSubmit(){
@@ -110,6 +110,13 @@ function undoDeleteText(scope){
     } else {
         text.value = "";
     }
+}
+
+function resetModal() {
+    modal = document.querySelector("#modal");
+    modal.style.display = "none";
+    modal.style.width = '';
+    modal.style.height = '';
 }
 </script>
 </body>
