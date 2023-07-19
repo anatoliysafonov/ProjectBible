@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import RegisterForm, LoginForm
+from django.contrib.auth.decorators import login_required
 
 
 def signupuser(request):
@@ -12,7 +13,7 @@ def signupuser(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(to='bible:root_from_users')
+            return redirect(to='users:login')
         else:
             return render(request, 'users/signup.html', context={"form": form})
 
@@ -21,7 +22,7 @@ def signupuser(request):
 
 def loginuser(request):
     if request.user.is_authenticated:
-        return redirect(to='noteapp:main')
+        return redirect(to='bible:root_from_users')
 
     if request.method == 'POST':
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
@@ -33,3 +34,9 @@ def loginuser(request):
         return redirect(to='bible:root_from_users')
 
     return render(request, 'users/login.html', context={"form": LoginForm()})
+
+
+@login_required
+def logoutuser(request):
+    logout(request)
+    return redirect(to='bible:root_from_users')

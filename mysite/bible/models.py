@@ -36,6 +36,7 @@ class Verse(models.Model):
 
 class Note(models.Model):
     code = models.CharField(max_length=8, null=True)
+    user = models.IntegerField(null=True)
     text = models.TextField()
 
     class Meta:
