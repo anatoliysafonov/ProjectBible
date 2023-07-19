@@ -23,15 +23,8 @@
         <a href="/user/logout"><button>Вийти</button></a>
         {% endif %}
     </nav>
-    <header class="page-header">
-        <span>{{book_name}}</span>
-    </header>
-
-    <nav>
-        <a href="/bible/{{book}}/{{prev_page}}"><button class="content_buttoms_button" {% if not prev_page %} disabled {% endif %}>Попередній розділ</button></a>
-        <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" style="margin-left: 10px;" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
-    </nav>
-
+    {% block header %} {% endblock %}
+    
     <main class="outer">
         {% block content %} {% endblock %}
     </main>
