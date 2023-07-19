@@ -3,3 +3,9 @@ mysite/bible/__pycache__/
 mysite/bible/migrations/__pycache__
 mysite/__pycache__/
 *.pyc
+mysite/bible/__pycache__/models.cpython-310.pyc
+mysite/bible/__pycache__/views.cpython-310.pyc
+mysite/mysite/__pycache__/settings.cpython-310.pyc
+mysite/mysite/__pycache__/urls.cpython-310.pyc
+mysite/users/__pycache__/urls.cpython-310.pyc
+mysite/users/__pycache__/views.cpython-310.pyc
