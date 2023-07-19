@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = ['users.backends.UsernameEmailBackend']
+
 
 # Application definition
 

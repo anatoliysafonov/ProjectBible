@@ -19,8 +19,7 @@ a {
 .site_navigation {
     display: flex;
     flex-direction: row;
-    justify-content: right;
-    background-color: aquamarine;
+    justify-content: center;
     width: 100vw;
 }
 
