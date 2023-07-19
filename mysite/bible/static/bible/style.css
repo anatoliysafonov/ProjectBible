@@ -16,6 +16,14 @@ a {
     color: #4b607b;
 }
 
+.site_navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    background-color: aquamarine;
+    width: 100vw;
+}
+
 .outer {
     width: 70%;
     background-color: white;
@@ -38,6 +46,7 @@ a {
     font-size: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 nav {

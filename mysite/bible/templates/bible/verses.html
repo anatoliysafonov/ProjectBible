@@ -9,10 +9,12 @@
     <div class="row_verse_text click_no_propagation">
         <span>{{verse.text}}</span>
     </div>
+    {% if user.is_authenticated %}
     <div class="row_note_icon">
         <!-- <i class="material-icons">edit</i> -->
         <span>Коментар</span>
     </div>
+    {% endif %}
 </section>
 {% endfor %}
 {% endautoescape %}

@@ -4,11 +4,9 @@ from django.core.cache import cache
 from django.http import JsonResponse
 from .models import Verse, Book, Note 
 from .sevices import make_text_linked
-
+from django.db.models import Q
 
 def index(request, book: str='matt', chapter: int=1):
-    user = request.user.id if request.user.id else 0
-    print('USER:', user)
     # список віршів для виводу на сторінку
     verses_to_page = []
     # Завантажуємо вірші з redis. Якщо помінялась книга, то вірші будуть завантажені з нової книги
@@ -53,23 +51,28 @@ def page404(request):
 
 
 def ajaxreadnote(request):
+    user = request.user.id
+    print(user)
     answer = ''
     uuid = 0
     if request.method == "POST":
-        data = request.POST.get('uuid')
-        note_text = Note.objects.filter(code=str(data))
+        uuid = request.POST.get('uuid')
+        note_text = Note.objects.filter(Q(code=str(uuid)) & Q(user=user)) # noqa
         if note_text:
             answer = note_text[0].text
-    return JsonResponse({'result': answer, 'uuid': data}, status=200)
+    return JsonResponse({'result': answer, 'uuid': uuid}, status=200)
+
 
 def ajaxwritenote(request):
+    text = ''
+    user = request.user.id
+    print(user)
     if request.method == "POST":
         text = request.POST.get('text')
         uuid = request.POST.get('uuid')
-        note = Note.objects.filter(code=uuid).first()
+        note = Note.objects.filter(Q(code=uuid) & Q(user=user)).first() # noqa
         if not note:
-            note = Note(code=uuid, text=text)
-
+            note = Note(code=uuid, text=text, user=user)
         else:
             note.text = text
         note.save() 
