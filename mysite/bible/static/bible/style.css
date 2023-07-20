@@ -77,15 +77,15 @@ nav button {
     font-size: 20px;
 }
 .row_note_icon {
-    width: 120px;
+    width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 .row_note_icon i {
-    font-size: 30px;
-    color: rgb(213, 215, 215)
+    font-size: 20px;
+    color: rgb(231, 231, 231)
 }
 .click_no_propagation {
     -webkit-user-select: none;
