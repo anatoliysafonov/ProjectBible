@@ -14,32 +14,32 @@
 </head>
 
 <body>
-    <nav class="site_navigation">
-        {% if not au %}
+    <nav>
+        {% if not user %}
         <a href="{% url 'users:login' %}"><button>Увійти</button></a>
         <a href="{% url 'users:signup' %}"><button>Реєстрація</button></a>
         {% endif %}
-        {% if au %}
-        <a href="{% url 'users:logout' %}"><button>Вийти</button></a>
+        {% if user %}
+        <a href="{% url 'users:logout' %}"><button>Вийти&#160&#160<b>{{user.username}}</b></button></a>
         {% endif %}
     </nav>
     {% block header %} {% endblock %}
     
-    <main class="outer">
+    <main>
         {% block content %} {% endblock %}
     </main>
 
     <dialog id="modal">  
             {% csrf_token %}
-            <header class="modal_header">
-                <span id="modal_verse_text" class="modal_verse_text"></span>
-                <i class="material-icons close-button" onclick="hideModal()">close</i>
+            <header>
+                <span id="modal_verse_text"></span>
+                <i class="material-icons" onclick="hideModal()">close</i>
             </header>
-            <textarea rows="25" name="note_text" id="note_text" placeholder="без коментара" class="textNote"></textarea>
+            <textarea rows="25" name="note_text" id="note_text" placeholder="без коментара"></textarea>
             <nav class="dialog_nav">
-                <input class="btn-save" type="button" uuid=0 value="Зберегти зміни" id="submit" onclick="customSubmit(this)">
+                <input type="button" uuid=0 value="Зберегти зміни" id="submit" onclick="customSubmit(this)">
                 <input type="button" onclick="undoDeleteText(scope='undo')" value="Відмінити зміни">
-                <input class="btn-warning" type="button" onclick="undoDeleteText(scope='delete')" value = "Видалити все">
+                <input type="button" onclick="undoDeleteText(scope='delete')" value = "Видалити все">
             </nav>
     </dialog>
 

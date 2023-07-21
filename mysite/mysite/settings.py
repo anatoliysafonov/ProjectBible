@@ -85,6 +85,13 @@ CACHES = {
         "TIMEOUT": 3660,
     }
 }
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#         'LOCATION': 'redis://:567234@195.201.150.230:6379/db0',
+#         "TIMEOUT": 3660,
+#     }
+# }
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -95,6 +102,16 @@ DATABASES = {
         "PORT": 5433,
     }
 }
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "db_bible",
+#         "USER": "postgres",
+#         "PASSWORD": 1065,
+#         "HOST": 'localhost',
+#         "PORT": 5432,
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 

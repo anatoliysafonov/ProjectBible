@@ -5,21 +5,21 @@
 </header>
 <nav>
     <a href="/bible/{{book}}/{{prev_page}}"><button class="content_buttoms_button" {% if not prev_page %} disabled {% endif %}>Попередній розділ</button></a>
-    <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" style="margin-left: 10px;" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
+    <a href="/bible/{{book}}/{{next_page}}"><button class="content_buttoms_button" {% if not next_page %} disabled {% endif %}>Наступний розділ</button></a>
 </nav>
 {%endblock %}
 {% block content %}
 {% autoescape off %}
 {% for verse in verses %}
-<section class="row" onclick="openModal(this, uuid={{verse.id}})">
-    <div class="row_verse_number click_no_propagation">
+<section onclick="openModal(this, {{verse.id}})"> # noqa
+    <div class="click_no_propagation">
         <span>{{verse.chapter}}:{{verse.verse}}</span>
     </div>
-    <div class="row_verse_text click_no_propagation">
+    <div class="click_no_propagation">
         <span>{{verse.text}}</span>
     </div>
-    {% if au %}
-    <div class="row_note_icon">
+    {% if user %}
+    <div>
         <i class="material-icons">edit</i>
     </div>
     {% endif %}

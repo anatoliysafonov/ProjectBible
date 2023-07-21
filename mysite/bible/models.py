@@ -32,14 +32,9 @@ class Verse(models.Model):
     book = ForeignKey(Book, on_delete=CASCADE)
 
     class Meta:
-        ordering = ['verse']
+        ordering = ['chapter', 'verse']
 
 class Note(models.Model):
-    code = models.CharField(max_length=8, null=True)
+    verse = models.ForeignKey(Verse, on_delete=CASCADE)
     user = models.IntegerField(null=True)
     text = models.TextField()
-
-    class Meta:
-        indexes = [
-            models.Index(fields=['code'])
-        ]

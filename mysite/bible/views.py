@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.core.cache import cache
 from django.http import JsonResponse
 from .models import Verse, Book, Note
-from mysite import settings
 from .sevices import make_text_linked
 from django.db.models import Q
 
@@ -11,7 +10,7 @@ from django.db.models import Q
 def index(request, book: str='matt', chapter: int=1):
     # список віршів для виводу на сторінку
     verses_to_page = []
-    userid = cache.get('userid') or 0
+    user = pickle.loads(cache.get('user'))  if cache.get('user') else None
     # Завантажуємо вірші з redis. Якщо помінялась книга, то вірші будуть завантажені з нової книги
     verses = cache.get('verses') if (cache.get('book') == book) else None
     # завантажуємо дані книги з redis.
@@ -43,7 +42,7 @@ def index(request, book: str='matt', chapter: int=1):
                'prev_page': prev_page,
                'book_name': book_data.name,
                'book': book,
-               'au':userid,
+               'user':user,
                }
     return render(request, 'bible/verses.html', context=context)
 
@@ -57,7 +56,7 @@ def ajaxreadnote(request):
     userid = request.user.id
     if request.method == "POST":
         uuid = request.POST.get('uuid')
-        note_text = Note.objects.filter(Q(code=str(uuid)) & Q(user=userid)) # noqa
+        note_text = Note.objects.filter(Q(verse_id=str(uuid)) & Q(user=userid)) # noqa
         if note_text:
             answer = note_text[0].text
     return JsonResponse({'result': answer, 'uuid': uuid}, status=200)
@@ -69,9 +68,9 @@ def ajaxwritenote(request):
     if request.method == "POST":
         text = request.POST.get('text')
         uuid = request.POST.get('uuid')
-        note = Note.objects.filter(Q(code=uuid) & Q(user=userid)).first() # noqa
+        note = Note.objects.filter(Q(verse_id=uuid) & Q(user=userid)).first() # noqa
         if not note:
-            note = Note(code=uuid, text=text, user=user)
+            note = Note(verse_id=uuid, text=text, user=userid)
         else:
             note.text = text
         note.save() 
